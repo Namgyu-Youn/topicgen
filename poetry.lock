@@ -2405,6 +2405,36 @@ mpmath = ">=1.1.0,<1.4"
 dev = ["hypothesis (>=6.70.0)", "pytest (>=7.1.0)"]
 
 [[package]]
+name = "tensorrt"
+version = "10.7.0"
+description = "TensorRT Metapackage"
+optional = false
+python-versions = "*"
+groups = ["main"]
+markers = "python_version <= \"3.11\""
+files = [
+    {file = "tensorrt-10.7.0.tar.gz", hash = "sha256:2c74ee72c450ef055e894e04f27510094f81e575a284af9d4b4b06a4369d0e2d"},
+]
+
+[package.dependencies]
+tensorrt_cu12 = "10.7.0"
+
+[[package]]
+name = "tensorrt-cu12"
+version = "10.7.0"
+description = "A high performance deep learning inference library"
+optional = false
+python-versions = ">=3.6"
+groups = ["main"]
+markers = "python_version <= \"3.11\""
+files = [
+    {file = "tensorrt_cu12-10.7.0.tar.gz", hash = "sha256:a9d3119613aeb1c27e7157bf05b110f36b9ab4e85a84c843d4f6248e2648cff5"},
+]
+
+[package.extras]
+numpy = ["numpy"]
+
+[[package]]
 name = "tiktoken"
 version = "0.8.0"
 description = "tiktoken is a fast BPE tokeniser for use with OpenAI's models"
@@ -2940,4 +2970,4 @@ propcache = ">=0.2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.12"
-content-hash = "e1d6b20e575336e35c8493efe16f33ac302d0df0a4cb959c53a2570728088c4e"
+content-hash = "c8880f5cf11477478c7a5b18f73c7119d6ef4e4f36daccdc2e1565a1e16ebd34"

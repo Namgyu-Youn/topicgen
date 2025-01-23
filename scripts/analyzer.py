@@ -7,6 +7,7 @@ import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 from .topic_list import TOPIC_LIST
+from .optimizer import ModelOptimizer
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.debug import debug_async_trace, debug_trace
@@ -43,6 +44,9 @@ class TopicAnalyzer:
             self.session = self._load_onnx_model()
             logger.info("ONNX model loaded successfully")
 
+            # Model Optimization
+            self.optimizer = ModelOptimizer(self.model_path)
+            self.optimized_models = self.optimizer.optimize_all()
         except Exception:
             logger.exception("Error in TopicAnalyzer initialization")
             raise

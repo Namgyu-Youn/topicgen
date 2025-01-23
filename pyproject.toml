@@ -13,8 +13,6 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
-onnx = "^1.15.0"
-onnxruntime = "^1.17.0"
 transformers = "^4.40.0"
 torch = {version = "2.5.1+cpu", source = "pytorch"}
 ruff = "^0.9.0"
@@ -22,6 +20,7 @@ tiktoken = "^0.8.0"
 aiohttp = "^3.11.11"
 pytest = "^8.3.4"
 gradio = "^5.12.0"
+numpy = "^2.2.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"

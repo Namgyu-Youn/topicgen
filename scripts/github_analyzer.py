@@ -1,3 +1,4 @@
+import asyncio
 from typing import Any, ClassVar
 from urllib.parse import urlparse
 
@@ -75,26 +76,14 @@ class GitHubAnalyzer:
             return None
 
     async def _fetch_core_files(self, repo_url: str) -> dict[str, str]:
-        """Fetch content of core files from repository.
-
-        Args:
-            repo_url: GitHub repository URL
-
-        Returns:
-            Dictionary mapping filenames to their content
-
-        """
         owner, repo, branch = self.parse_github_url(repo_url)
-        files_content = {}
-
         async with aiohttp.ClientSession() as session:
+            tasks = []
             for file in self.CORE_FILES:
                 url = f"{self.base_url}/{owner}/{repo}/{branch}/{file}"
-                content = await self._fetch_file(session, url)
-                if content:
-                    files_content[file] = content
-
-        return files_content
+                tasks.append(self._fetch_file(session, url))
+            results = await asyncio.gather(*tasks)
+            return {file: content for file, content in zip(self.CORE_FILES, results, strict=False) if content}
 
     def _parse_poetry_deps(self, content: str) -> list[str]:
         """Parse dependencies from pyproject.toml content.

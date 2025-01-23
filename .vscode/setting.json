@@ -1,4 +1,12 @@
 {
+    "terminal.integrated.profiles.linux": {
+    "zsh": {
+        "path": "/usr/bin/zsh",
+        "args": ["-c", "PROMPT='%1~/ ($(git_current_branch)) $ ' zsh"]
+    }
+    },
+    "terminal.integrated.defaultProfile.linux": "zsh",
+
     // Global formatting settings
     "editor.formatOnSave": true,
     "editor.renderWhitespace": "trailing",
